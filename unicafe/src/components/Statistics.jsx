@@ -1,11 +1,15 @@
+import { useStatistics } from "../store"
+
 const Statistics = () => {
-  const good = 0
-  const neutral = 0
-  const bad = 0
-  const all = 0
-  const average = 0
-  const positive = 0
-  
+  const { good, neutral, bad } = useStatistics()
+  const all = good + neutral + bad
+  let average = (good - bad) / all
+  let positive = `${(good/all) * 100} %`
+  if(all === 0){
+    average = 0
+    positive = '0 %'
+  }
+
   return (
     <div>
       <h2>statistics</h2>

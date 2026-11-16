@@ -1,16 +1,18 @@
 import { create } from 'zustand'
 
-const useStatisticStore = create((/*This will become set, as we allow actions*/) => ({
+const useStatisticStore = create(set => ({
     statistics: 
     {
         good: 0,
         neutral: 0,
         bad: 0,
-        all: 0,
-        average: 0,
-        positive: 0,
     },
-    actions: {/* Empty as of right now */}, 
+
+    actions: {
+        increment: (button) => set(state => ({
+            statistics: {...state.statistics, [button]: state.statistics[button] + 1}
+        })),
+    }, 
 }))
 
 
