@@ -20,7 +20,41 @@ const asObject = anecdote => ({
 
 const useAnecdoteStore = create((set) => ({
   anecdotes: anecdotesAtStart.map(asObject),
-  actions: {},
+  actions: {
+    vote: (id) => set(state => ({
+      anecdotes: state.anecdotes.map(
+        anecdote => anecdote.id === id ? anecdote.votes + 1 : anecdote
+      )
+    }))
+  },
 }))
 
+/*
+So this is a bit confusing, just how it is structured - but anecdotes is indeed an array of 6 objects
+representing notes; we need to be able to change that vote
+So I'm wondering as I do this, how I will specify WHICH anecdote it is; I would think the key;
+we need it so that we find within anecdotes that which has the proper id;
+const result = inventory.find(item => item.name === "cherries")
+
+Issues with my first try; 
+    vote: (id) => set(state => ({
+      anecdotes: {...state.anecdotes, state.anecdotes.find(anecdote => anecdote.id === id) }
+    }))
+First: Within braces, everything requires a key - I can't do an expression. Spreads have keys, just they're implicit and numeric.
+Second: I need to produce an entirely new array with one item changed, and everything else untouched; map.
+state.anecdotes.map(anecdote => 
+  anecdote.id === id 
+    ?  the changed version 
+    : anecdote
+)
+
+Code from unicafe; 
+ actions: {
+        increment: (button) => set(state => ({
+            statistics: {...state.statistics, [button]: state.statistics[button] + 1}
+        })),
+    }, 
+*/
+
 export const useAnecdotes = () => useAnecdoteStore((state) => state.anecdotes)
+export const useAnecdotesActions = () => useAnecdoteStore((state) => state.actions)
