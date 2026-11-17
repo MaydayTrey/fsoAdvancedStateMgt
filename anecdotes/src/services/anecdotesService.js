@@ -8,4 +8,31 @@ const getAll = async () => {
     const data = await response.json() //Must convert the JSON to an object
     return data //Return the data
 }
-export default { getAll }
+
+const createAnecdote = async (anecdote) => {
+    const response = await fetch(baseUrl, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(anecdote)
+    }) 
+
+    if(!response.ok) {
+        throw new Error('Failed to create the anecdote!') 
+    }
+
+    return await response.json()
+}
+
+const voteUpdate = async (anecdote) => {
+    const response = await fetch(`${baseUrl}/${anecdote.id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(anecdote)
+    })
+
+    if(!response.ok){
+        throw new Error('Failed to vote!')
+    }
+    return await response.json()
+}
+export default { getAll, createAnecdote, voteUpdate }
