@@ -1,6 +1,7 @@
 
 import { create } from 'zustand'
 import anecdotesService from './services/anecdotesService'
+import { notify } from './notificationStore'
 
 const useAnecdoteStore = create((set, get) => ({
   anecdotes: [],
@@ -14,10 +15,12 @@ const useAnecdoteStore = create((set, get) => ({
       const updated = await anecdotesService.voteUpdate(anecdoteUpdated)
       //3. Set, using what came back
       set(state => ({ anecdotes: state.anecdotes.map(n => n.id === id ? updated : n) }))
+      notify(`you voted for '${updated.content}'`)
   },
     add: async (anecdote) => {
       const newAnecdote = await anecdotesService.createAnecdote(anecdote)
       set(state => ({ anecdotes: state.anecdotes.concat(newAnecdote)}))
+      notify(`you added '${newAnecdote.content}'`)
     },
     setFilter: value => set(() => ({ filter: value })),
     initialize: (newAnecdotes) => set(() => ({ anecdotes: newAnecdotes })) // Long version for readability
