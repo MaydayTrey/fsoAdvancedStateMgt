@@ -15,7 +15,7 @@ const Notification = () => {
     marginBottom: 10
   }
 
-  return <div style={style}>{notification}</div>
+  return <div data-testid="notification" style={style}>{notification}</div>
 }
 
 export default Notification

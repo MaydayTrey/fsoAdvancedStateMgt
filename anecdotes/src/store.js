@@ -3,7 +3,7 @@ import { create } from 'zustand'
 import anecdotesService from './services/anecdotesService'
 import { notify } from './notificationStore'
 
-const useAnecdoteStore = create((set, get) => ({
+export const useAnecdoteStore = create((set, get) => ({
   anecdotes: [],
   filter: '',
   actions: {
@@ -15,7 +15,7 @@ const useAnecdoteStore = create((set, get) => ({
       const updated = await anecdotesService.voteUpdate(anecdoteUpdated)
       //3. Set, using what came back
       set(state => ({ anecdotes: state.anecdotes.map(n => n.id === id ? updated : n) }))
-      notify(`you voted for '${updated.content}'`)
+      notify(`you voted '${updated.content}'`)
   },
     add: async (anecdote) => {
       const newAnecdote = await anecdotesService.createAnecdote(anecdote)
@@ -44,6 +44,7 @@ export const useAnecdotes = () => {
 
 export const useFilter = () => useAnecdoteStore(state => state.filter)
 export const useAnecdotesActions = () => useAnecdoteStore((state) => state.actions)
+
 
 /*
 
