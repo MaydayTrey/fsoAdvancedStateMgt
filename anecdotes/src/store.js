@@ -22,6 +22,12 @@ const useAnecdoteStore = create((set, get) => ({
       set(state => ({ anecdotes: state.anecdotes.concat(newAnecdote)}))
       notify(`you added '${newAnecdote.content}'`)
     },
+    remove: async (id) => {
+      const anecdote = get().anecdotes.find(n => n.id === id)
+      await anecdotesService.remove(id)
+      set(state => ({ anecdotes: state.anecdotes.filter(n => n.id !== id) }))
+      notify(`deleted '${anecdote.content}'`)
+    },
     setFilter: value => set(() => ({ filter: value })),
     initialize: (newAnecdotes) => set(() => ({ anecdotes: newAnecdotes })) // Long version for readability
   },
