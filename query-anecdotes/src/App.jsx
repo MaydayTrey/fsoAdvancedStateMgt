@@ -1,6 +1,8 @@
 import AnecdoteForm from './components/AnecdoteForm'
 import Notification from './components/Notification'
 import { useQuery } from '@tanstack/react-query'
+import { getAnecdotes } from './requests'
+
 
 const App = () => {
   const handleVote = (anecdote) => {
@@ -10,25 +12,21 @@ const App = () => {
   //This is the TanStack Query useQuery - whcih is setting the key, and fetching the data from the server.
   const result = useQuery({
     queryKey: ['anecdotes'],
-    queryFn: async () => {
-      const response = await fetch('http://localhost:3001/anecdotes')
-      if(!response.ok){
-        throw new Error('Failed to fetch the anecdotes')
-      }
-      return response.json()
-    }
+    queryFn: getAnecdotes
   })
 
 
   console.log(JSON.parse(JSON.stringify(result))) //This is a strange console log?
   //We stringify - so turn the JS object to a string, but then parse it, then log it?
 
+  //Loading - the pending state.
   if(result.isPending){
     return(
       <div>Currently loading.</div>
     )
   }
 
+  //On error to fetch
   if (result.isError) {
   return <div>anecdote service not available due to problems in server</div>
 }
@@ -62,5 +60,27 @@ export default App
 /*
 TanStack Query - implementing useQuery; so we fetch from the JSON server in this situation, and populated anecdotes with that data.
 Previously, we instead had a hardcoded anecdotes, but now we fetch it - server source of data. 
+
+What is the useMutation import utility from TanStack? When I think of mutation, I think of in-place data mutation.
+
+
+import { useQuery, useMutation } from '@tanstack/react-query'
+import { getNotes, createNote } from './requests'
+
+const App = () => {
+  const newNoteMutation = useMutation({
+    mutationFn: createNote,
+  })
+
+  const addNote = async (event) => {
+    event.preventDefault()
+    const content = event.target.note.value
+    event.target.reset()
+    newNoteMutation.mutate({ content, important: true })
+  }
+
+  //
+
+}
 
 */

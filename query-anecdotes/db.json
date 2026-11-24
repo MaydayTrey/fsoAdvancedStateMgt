@@ -29,6 +29,16 @@
       "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
       "id": "98312",
       "votes": 0
+    },
+    {
+      "content": "Just testing a new anecdote",
+      "votes": 0,
+      "id": "50f8a924-41d5-4b4b-8514-702c8aeb23a2"
+    },
+    {
+      "content": "This now has onSuccess, which utilizes the InvalidateQuery!",
+      "votes": 0,
+      "id": "f23dc606-b341-4abd-b56a-975d9a643fd1"
     }
   ]
 }
