@@ -1,15 +1,16 @@
 import { createRoot } from 'react-dom/client'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-
+import { NotificationContextProvider } from './NotificationContext'
 import App from './App.jsx'
 
+//This is the cache initialized
 const queryClient = new QueryClient()
-//This creates the QueryClient, so this a class as we get back an object with
-//Tooling/functions and properties we will use.
 
 createRoot(document.getElementById('root')).render(
   <QueryClientProvider client={queryClient}>
-    <App />
+    <NotificationContextProvider>
+      <App />
+    </NotificationContextProvider>
   </QueryClientProvider>
 )
 
