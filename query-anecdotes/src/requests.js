@@ -22,9 +22,26 @@ export const createAnecdote = async (newAnecdote) => {
     if(!response.ok){
         throw new Error('Failed in creating the new anecdote')
     }
-    const data = response.json()
+    const data = await response.json()
     return data
 }
 
+export const voteIncrement = async(updatedAnecdote) => {
+    const httpOptions = {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedAnecdote)
+    }
 
-export default { getAnecdotes, createAnecdote }
+    const response = await fetch(`${baseUrl}/${updatedAnecdote.id}`, httpOptions)
+    
+    if(!response.ok){
+        throw new Error('Failed to increment the vote of the anecdote')
+    }
+    const data = await response.json()
+    return data 
+
+}
+
+
+export default { getAnecdotes, createAnecdote, voteIncrement }
