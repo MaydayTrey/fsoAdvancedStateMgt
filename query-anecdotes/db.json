@@ -1,44 +1,29 @@
 {
   "anecdotes": [
     {
-      "content": "If it hurts, do it more often",
-      "id": "47145",
+      "id": "71dde148-a845-4412-a9c0-f245162f03bd",
+      "content": "Make it work, then make it fast",
       "votes": 0
     },
     {
-      "content": "Adding manpower to a late software project makes it later!",
-      "id": "21149",
-      "votes": 0
+      "id": "9dd67512-dde9-48a5-a5b4-b6221df61320",
+      "content": "There are two hard things in computer science",
+      "votes": 3
     },
     {
-      "content": "The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.",
-      "id": "69581",
-      "votes": 0
+      "id": "dc22f9ec-07c4-4beb-9d26-00ca308a0fb9",
+      "content": "Untested code is broken code",
+      "votes": 4
     },
     {
-      "content": "Any fool can write code that a computer can understand. Good programmers write code that humans can understand.",
-      "id": "36975",
-      "votes": 0
+      "id": "e70f2045-9b3d-408b-b9a3-b59c77a56d07",
+      "content": "Simplicity is the ultimate sophistication",
+      "votes": 5
     },
     {
-      "content": "Premature optimization is the root of all evil.",
-      "id": "25170",
-      "votes": 0
-    },
-    {
-      "content": "Debugging is twice as hard as writing the code in the first place. Therefore, if you write the code as cleverly as possible, you are, by definition, not smart enough to debug it.",
-      "id": "98312",
-      "votes": 0
-    },
-    {
-      "content": "Just testing a new anecdote",
-      "votes": 0,
-      "id": "50f8a924-41d5-4b4b-8514-702c8aeb23a2"
-    },
-    {
-      "content": "This now has onSuccess, which utilizes the InvalidateQuery!",
-      "votes": 4,
-      "id": "f23dc606-b341-4abd-b56a-975d9a643fd1"
+      "id": "9aa69acc-3ad2-4d85-a1f9-7ffccdd92588",
+      "content": "Real artists ship code",
+      "votes": 7
     }
   ]
 }
